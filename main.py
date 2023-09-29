@@ -5,6 +5,9 @@ import openai
 api_key = "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"
 model_id = "gpt-3.5-turbo"
 
+st.title("SEO - Article Generator")
+st.subheader("Generate SEO articles in a jiffy!")
+
 #Defining the function to generate the article
 def generate_article(keywords, writing_style, words):
     return "This is a test article generated"
