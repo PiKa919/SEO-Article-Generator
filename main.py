@@ -9,7 +9,20 @@ st.title("SEO - Article Generator")
 st.subheader("Generate SEO articles in a jiffy!")
 
 #Defining the function to generate the article
+import openai
+
 def generate_article(keywords, writing_style, words):
+    """
+    Generates an SEO optimized article based on the given keywords, writing style, and desired number of words.
+
+    Args:
+        keywords (str): The keywords to be included in the article.
+        writing_style (str): The desired writing style of the article.
+        words (int): The desired number of words in the article.
+
+    Returns:
+        str: The generated article.
+    """
     respond_to_prompt = openai.Completion.create(
         engine="text-davinci-002",
         prompt = "Write an SEO optimized article which has these keywords " + keywords + "\nWriting style: " + writing_style + "\nNumber of words: " + str(words) + "\n\nArticle:",
@@ -24,8 +37,6 @@ def generate_article(keywords, writing_style, words):
         
     print(result)
     return result
-    
-    # return "This is a test article generated"
 
 #Defining the app
 keyword = st.text_input("Enter keywords")
