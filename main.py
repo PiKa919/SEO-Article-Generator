@@ -10,7 +10,20 @@ st.subheader("Generate SEO articles in a jiffy!")
 
 #Defining the function to generate the article
 def generate_article(keywords, writing_style, words):
-    return "This is a test article generated"
+    respond_to_prompt = openai.Completion.create(
+        model_id="gpt-3.5-turbo",
+        message = [
+            {"role": "user", "content": "Write an SEO optimized article which has these keywords" + keywords + "\nWriting style: " + writing_style + "\nNumber of words: " + str(words) + "\n\nArticle:"},
+        ]
+    )
+    result = ''
+    for choice in respond_to_prompt.choices:
+        result += choice.message.content
+        
+    print(result)
+    return result
+    
+    # return "This is a test article generated"
 
 #Defining the app
 keyword = st.text_input("Enter keywords")
