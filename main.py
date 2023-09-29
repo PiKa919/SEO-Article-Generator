@@ -2,8 +2,8 @@ import streamlit as st
 import openai
 
 #Initialize OpenAI
-api_key = "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"
-model_id = "gpt-3.5-turbo"
+api_key = "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"
+openai.api_key = api_key
 
 st.title("SEO - Article Generator")
 st.subheader("Generate SEO articles in a jiffy!")
@@ -11,14 +11,16 @@ st.subheader("Generate SEO articles in a jiffy!")
 #Defining the function to generate the article
 def generate_article(keywords, writing_style, words):
     respond_to_prompt = openai.Completion.create(
-        model_id="gpt-3.5-turbo",
-        message = [
-            {"role": "user", "content": "Write an SEO optimized article which has these keywords" + keywords + "\nWriting style: " + writing_style + "\nNumber of words: " + str(words) + "\n\nArticle:"},
-        ]
+        engine="text-davinci-002",
+        prompt = "Write an SEO optimized article which has these keywords " + keywords + "\nWriting style: " + writing_style + "\nNumber of words: " + str(words) + "\n\nArticle:",
+        max_tokens=1024,
+        n=1,
+        stop=None,
+        temperature=0.5,
     )
     result = ''
     for choice in respond_to_prompt.choices:
-        result += choice.message.content
+        result += choice.text
         
     print(result)
     return result
