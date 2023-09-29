@@ -2,8 +2,7 @@ import streamlit as st
 import openai
 
 #Initialize OpenAI
-api_key = "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"
-openai.api_key = api_key
+openai.api_key = "YOUR_API_KEY_HERE"
 
 st.title("SEO - Article Generator")
 st.subheader("Generate SEO articles in a jiffy!")
